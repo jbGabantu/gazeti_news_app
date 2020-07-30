@@ -1,18 +1,25 @@
 const express = require("express");
 const morgan = require("morgan");
-const homeRoute = require("./routes/home.route");
+const cors = require("cors");
+const indexRouter = require("./routes/home.route");
 
 const app = express();
 
 //Logger Middleware
 app.use(morgan("dev"));
+app.use(cors());
 
 //Static folder
 app.use(express.static("client"));
 
 //Homepage Route
-app.use("/", homeRoute);
+app.use("/", indexRouter);
 
 //PORT
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+// 404 page
+app.use((req, res) => {
+  res.status(404).render("404", { title: "404" });
+});

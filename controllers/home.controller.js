@@ -24,7 +24,7 @@ const topStories = (req, res) => {
       country: `${currentLocation}`,
     })
     .then((response) => {
-      res.json({ redirect: "/" });
+      res.json(response);
       console.log("ARTICLES");
       console.log(response);
     })

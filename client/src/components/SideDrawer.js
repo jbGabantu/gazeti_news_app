@@ -21,7 +21,7 @@ class Navbar extends Component {
           aria-controls="collapseExample"
           onClick={this.toggle}
         >
-          <i class="fas fa-bars"></i>
+          <i className="fas fa-bars"></i>
         </button>
         <div className="collapse navbar-collapse" isOpen={this.state.isOpen}>
           <div className="nav ml-auto" navbar>
