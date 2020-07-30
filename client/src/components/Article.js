@@ -5,12 +5,14 @@ class Article extends Component {
     super(props);
     this.state = { apiResponse: { articles: [] } };
   }
+
   callAPI() {
     fetch("http://localhost:8080/")
       .then((res) => res.json())
       .then((res) => this.setState({ apiResponse: res }))
       .catch((err) => err);
   }
+
   componentDidMount() {
     this.callAPI();
   }

@@ -5,11 +5,11 @@ const indexRouter = require("./routes/home.route");
 
 const app = express();
 
-//Logger Middleware
+//Middleware
 app.use(morgan("dev"));
 app.use(cors());
 
-//Static folder
+//Static folder - view
 app.use(express.static("client"));
 
 //Homepage Route
