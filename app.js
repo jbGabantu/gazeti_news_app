@@ -1,6 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
-const homeController = require("./controllers/home.controller");
+const homeRoute = require("./routes/home.route");
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.use(morgan("dev"));
 app.use(express.static("client"));
 
 //Homepage Route
-app.use("/", homeController);
+app.use("/", homeRoute);
 
 //PORT
 const PORT = process.env.PORT || 8080;
