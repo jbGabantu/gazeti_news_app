@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.css";
-import "./styles/normalize.css";
+import "./styles/normalize.scss";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(

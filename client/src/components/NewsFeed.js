@@ -5,8 +5,8 @@ class NewsFeed extends Component {
   state = {};
   render() {
     return (
-      <div>
-        <h2>News Feed</h2>
+      <div className="articles-container">
+        <h2 id="top-stories">Top Stories</h2>
         <Article />
       </div>
     );

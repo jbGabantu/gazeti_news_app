@@ -6,10 +6,10 @@ class Navbar extends Component {
   state = {};
   render() {
     return (
-      <nav className="navbar navbar-light bg-light" expand="sm">
+      <nav className="navbar sticky-top navbar-light bg-light flex" expand="sm">
         <SideDrawer />
-        <a href="/" className="navbar-brand">
-          News App
+        <a className="navbar-brand flex-sm-fill" href="/">
+          <h3>Gazeti News</h3>
         </a>
         <Searchbar />
       </nav>

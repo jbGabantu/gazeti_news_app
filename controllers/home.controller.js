@@ -25,8 +25,8 @@ const topStories = (req, res) => {
     })
     .then((response) => {
       res.json(response);
-      console.log("ARTICLES");
-      console.log(response);
+      // console.log("ARTICLES");
+      // console.log(response);
     })
     .catch((err) => {
       console.log("Top Headlines Fetch Error :-S", err);

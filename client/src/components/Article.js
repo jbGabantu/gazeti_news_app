@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Moment from "react-moment";
 
 class Article extends Component {
   constructor(props) {
@@ -18,16 +19,39 @@ class Article extends Component {
   }
 
   render() {
+    const calendarStrings = {
+      lastDay: "[Yesterday at] LT",
+      sameDay: "[Today at] LT",
+      nextDay: "[Tomorrow at] LT",
+      lastWeek: "[last] dddd [at] LT",
+      nextWeek: "dddd [at] LT",
+      sameElse: "L",
+    };
     return (
       <div>
         {this.state.apiResponse.articles.map((article) => (
-          <ul>
-            <li>{article.source.name}</li>
-            <li>
-              <a href={article.url}>{article.title}</a>
-            </li>
-            <li>{article.publishedAt}</li>
-          </ul>
+          <div id="article-container" className="media">
+            <img
+              src={article.urlToImage}
+              className="mr-3"
+              width="64"
+              height="64"
+            />
+            <div className="media-body">
+              <h5 id="article-title" className="mt-0">
+                <a href={article.url}>{article.title}</a>
+              </h5>
+              <p id="article-description">{article.description}</p>
+              <div className="article-base">
+                <p id="source-name">{article.source.name}</p>
+                <time>
+                  <Moment calendar={calendarStrings}>
+                    {article.publishedAt}
+                  </Moment>
+                </time>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     );
