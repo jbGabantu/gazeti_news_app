@@ -8,7 +8,7 @@ class Article extends Component {
   }
 
   callAPI() {
-    fetch("http://localhost:8080/")
+    fetch("http://localhost:4000/")
       .then((res) => res.json())
       .then((res) => this.setState({ apiResponse: res }))
       .catch((err) => err);
@@ -19,14 +19,6 @@ class Article extends Component {
   }
 
   render() {
-    const calendarStrings = {
-      lastDay: "[Yesterday at] LT",
-      sameDay: "[Today at] LT",
-      nextDay: "[Tomorrow at] LT",
-      lastWeek: "[last] dddd [at] LT",
-      nextWeek: "dddd [at] LT",
-      sameElse: "L",
-    };
     return (
       <div>
         {this.state.apiResponse.articles.map((article) => (
@@ -45,9 +37,7 @@ class Article extends Component {
               <div className="article-base">
                 <p id="source-name">{article.source.name}</p>
                 <time>
-                  <Moment calendar={calendarStrings}>
-                    {article.publishedAt}
-                  </Moment>
+                  <Moment fromNow>{article.publishedAt}</Moment>
                 </time>
               </div>
             </div>

@@ -1,23 +1,43 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const mongoose = require("mongoose");
+const User = require("./models/User");
+
+// Routes
 const indexRouter = require("./routes/home.route");
 
+// Express App
 const app = express();
 
-//Middleware
-app.use(morgan("dev"));
-app.use(cors());
+// PORT
+const PORT = process.env.PORT || 4000;
 
-//Static folder - view
+// Connect to MongoDB
+const dbURI =
+  "mongodb+srv://johngabantu:Crystal7@gazetinews.dsbfs.mongodb.net/gazetinews?retryWrites=true&w=majority";
+
+mongoose
+  .connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(
+    (res) =>
+      app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`)),
+    console.log("DB Connected Succesfully!")
+  )
+  .catch((err) => console.log(err));
+
+// Middleware
+app.use(cors());
+app.use(morgan("dev"));
+
+// Static folder - view
 app.use(express.static("client"));
 
-//Homepage Route
+// Use Routes
 app.use("/", indexRouter);
-
-//PORT
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 // 404 page
 app.use((req, res) => {

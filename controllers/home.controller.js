@@ -5,7 +5,7 @@ const ipDataURL = `https://api.ipdata.co`;
 const ipData_API_Key = `a07401f7ab4c8df0d5b1b1220a4ea2592ba703d51107216777bd5e40`;
 let currentLocation;
 
-//Get country code of current country based on the IP Address
+// Get country code of current country based on the IP Address
 fetch(`${ipDataURL}?api-key=${ipData_API_Key}`)
   .then((response) => response.json())
   .then((data) => {
@@ -17,7 +17,7 @@ fetch(`${ipDataURL}?api-key=${ipData_API_Key}`)
     console.log("Location Fetch Error :-S", err);
   });
 
-//Get top headlines of the current country
+// Get top headlines of the current country
 const topStories = (req, res) => {
   newsapi.v2
     .topHeadlines({

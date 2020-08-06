@@ -6,13 +6,13 @@ const openWeather_API_Key = `c1f67dd872e861a122c7125cb9570728`;
 let currentCity;
 let currentTemp;
 
-//Get current city based on the IP Address
+// Get current city based on the IP Address
 const getWeather = fetch(`${ipDataURL}?api-key=${ipData_API_Key}`)
   .then((response) => response.json())
   .then((data) => {
     currentCity = data.city;
     console.log(currentCity);
-    //Get current weather of the current city
+    // Get current weather of the current city
     return fetch(
       `${openWeatherURL}?q=${currentCity}&appid=${openWeather_API_Key}`
     )
