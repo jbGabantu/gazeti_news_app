@@ -1,16 +1,15 @@
+const config = require("../config/secrets.json");
 const NewsAPI = require("newsapi");
-const newsapi = new NewsAPI("8911dffc4b1540f19bb8b0d4053a0637");
+const newsapi = new NewsAPI(config.newsapi);
 const fetch = require("node-fetch");
-const ipDataURL = `https://api.ipdata.co`;
-const ipData_API_Key = `a07401f7ab4c8df0d5b1b1220a4ea2592ba703d51107216777bd5e40`;
 let currentLocation;
 
 // Get country code of current country based on the IP Address
-fetch(`${ipDataURL}?api-key=${ipData_API_Key}`)
+fetch(`${config.ipDataURL}?api-key=${config.ipDataAPIKey}`)
   .then((response) => response.json())
   .then((data) => {
     currentLocation = data.country_code;
-    console.log(currentLocation);
+    console.log(`Country code: ${currentLocation}`);
     return;
   })
   .catch((err) => {

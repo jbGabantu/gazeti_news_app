@@ -3,9 +3,11 @@ const morgan = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/User");
+const config = require("./config");
 
 // Routes
-const indexRouter = require("./routes/home.route");
+const homeRoutes = require("./routes/home.route");
+const userRoutes = require("./routes/api/users");
 
 // Express App
 const app = express();
@@ -13,19 +15,20 @@ const app = express();
 // PORT
 const PORT = process.env.PORT || 4000;
 
-// Connect to MongoDB
-const dbURI =
-  "mongodb+srv://johngabantu:Crystal7@gazetinews.dsbfs.mongodb.net/gazetinews?retryWrites=true&w=majority";
+// DB Config
+const db = require("./config/keys").mongoURI;
 
+// Connect to MongoDB
 mongoose
-  .connect(dbURI, {
+  .connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   })
   .then(
     (res) =>
       app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`)),
-    console.log("DB Connected Succesfully!")
+    console.log("MongoDB connected succesfully!")
   )
   .catch((err) => console.log(err));
 
@@ -37,9 +40,10 @@ app.use(morgan("dev"));
 app.use(express.static("client"));
 
 // Use Routes
-app.use("/", indexRouter);
+app.use("/", homeRoutes);
+app.use("api/users", userRoutes);
 
-// 404 page
-app.use((req, res) => {
-  res.status(404).render("404", { title: "404" });
-});
+// // 404 page
+// app.use((req, res) => {
+//   res.status(404).render("404", { title: "404" });
+// });

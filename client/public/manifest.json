@@ -3,7 +3,7 @@
   "name": "Gazeti News App",
   "icons": [
     {
-      "src": "logo.png",
+      "src": "icon.png",
       "sizes": "1000x200",
       "type": "image/x-icon"
     },
