@@ -8,7 +8,7 @@ class Article extends Component {
   }
 
   callAPI() {
-    fetch("http://localhost:4000/")
+    fetch("http://localhost:5000/")
       .then((res) => res.json())
       .then((res) => this.setState({ apiResponse: res }))
       .catch((err) => err);
@@ -35,7 +35,7 @@ class Article extends Component {
               </h5>
               <p id="article-description">{article.description}</p>
               <div className="article-base">
-                <p id="source-name">{article.source.name}</p>
+                <p id="source-name">Source: {article.source.name}</p>
                 <time>
                   <Moment fromNow>{article.publishedAt}</Moment>
                 </time>

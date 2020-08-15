@@ -9,7 +9,9 @@ class Navbar extends Component {
       <nav className="navbar sticky-top navbar-light bg-light flex" expand="sm">
         <SideDrawer />
         <a className="navbar-brand flex-sm-fill" href="/">
-          <h3>Gazeti News</h3>
+          <h3>
+            <img src="./logo.png" alt="gazeti_news_logo" className="logo" />
+          </h3>
         </a>
         <Searchbar />
       </nav>

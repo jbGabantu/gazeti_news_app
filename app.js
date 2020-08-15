@@ -1,33 +1,30 @@
 const express = require("express");
+const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const User = require("./models/User");
-const config = require("./config");
+const expressValidator = require("express-validator");
+const dotenv = require("dotenv");
 
-// Routes
-const homeRoutes = require("./routes/home.route");
-const userRoutes = require("./routes/api/users");
+dotenv.config();
 
-// Express App
-const app = express();
+// Import Routes
+const homeRoute = require("./routes/home.route");
+const userRoute = require("./routes/api/users");
+const authRoute = require("./routes/api/auth");
 
-// PORT
-const PORT = process.env.PORT || 4000;
-
-// DB Config
-const db = require("./config/keys").mongoURI;
+const port = process.env.PORT || PORT_2;
 
 // Connect to MongoDB
 mongoose
-  .connect(db, {
+  .connect(process.env.DB_CONNECT, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
   .then(
     (res) =>
-      app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`)),
+      app.listen(port, () => console.log(`Server started on PORT:${port}`)),
     console.log("MongoDB connected succesfully!")
   )
   .catch((err) => console.log(err));
@@ -35,15 +32,12 @@ mongoose
 // Middleware
 app.use(cors());
 app.use(morgan("dev"));
+app.use(express.json());
 
-// Static folder - view
+// Static view folder
 app.use(express.static("client"));
 
-// Use Routes
-app.use("/", homeRoutes);
-app.use("api/users", userRoutes);
-
-// // 404 page
-// app.use((req, res) => {
-//   res.status(404).render("404", { title: "404" });
-// });
+//Route Middlewares
+app.use("/", homeRoute);
+app.use("/api/user", userRoute);
+app.use("/api/auth", authRoute);

@@ -12,5 +12,5 @@
 
 npm-debug.log*
 
-/config/secrets.json
+/config/default.json
 /config/keys.js
